@@ -27,7 +27,7 @@ jobs:
       with:
         dotnet-version: 6.x.x
     # Build
-    - name: Build Pull request \#${{ github.event.number }}
+    - name: Build PR ${{ github.event.number }}
       run: dotnet build
 
     - name: publish
@@ -36,5 +36,5 @@ jobs:
     - name: Upload built artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Artifact - ${{ matrix.configuration }} - \#${{ github.event.number }}
+        name: Artifact - ${{ matrix.configuration }} - PR ${{ github.event.number }}
         path: build

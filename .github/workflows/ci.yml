@@ -27,5 +27,5 @@ jobs:
       with:
         dotnet-version: 6.x.x
     # Execute all unit tests in the solution
-    - name: Build Pull request \#${{ github.event.number }}
+    - name: Build PR ${{ github.event.number }}
       run: dotnet build
