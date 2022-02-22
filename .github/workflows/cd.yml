@@ -10,12 +10,12 @@ jobs:
       matrix:
         configuration: [Debug, Release]
     runs-on: windows-latest
-    env:
+    # env:
       # Solution_Name: 4kTiles-Frontend.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
       # Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
       # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
       # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
-      EID: ${{ github.event.payload.push_id }}
+      # EID: ${{ github.event.payload.push_id }}
     steps:
     # Checkout
     - name: Checkout
@@ -28,7 +28,7 @@ jobs:
       with:
         dotnet-version: 6.x.x
     # Build
-    - name: Build PR ${{ env.EID }}
+    - name: Build
       run: dotnet build
     # Publish
     - name: publish
@@ -37,5 +37,5 @@ jobs:
     - name: Upload built artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Artifact - ${{ matrix.configuration }} - PR ${{ env.EID }}
+        name: Artifact - ${{ matrix.configuration }} 
         path: build
