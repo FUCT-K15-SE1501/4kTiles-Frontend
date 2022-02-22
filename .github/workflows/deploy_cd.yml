@@ -1,0 +1,40 @@
+name: 4kTiles WPF client CD
+
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    strategy:
+      matrix:
+        configuration: [Debug, Release]
+    runs-on: windows-latest
+    # env:
+      # Solution_Name: 4kTiles-Frontend.sln                         # Replace with your solution name, i.e. MyWpfApp.sln.
+      # Test_Project_Path: your-test-project-path                 # Replace with the path to your test project, i.e. MyWpfApp.Tests\MyWpfApp.Tests.csproj.
+      # Wap_Project_Directory: your-wap-project-directory-name    # Replace with the Wap project directory relative to the solution, i.e. MyWpfApp.Package.
+      # Wap_Project_Path: your-wap-project-path                   # Replace with the path to your Wap project, i.e. MyWpf.App.Package\MyWpfApp.Package.wapproj.
+    steps:
+    # Checkout
+    - name: Checkout
+      uses: actions/checkout@v2
+      with:
+        fetch-depth: 0
+    # Install the .NET Core workload
+    - name: Install .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.x.x
+    # Build
+    - name: build
+      run: dotnet build
+
+    - name: publish
+      run: dotnet publish --output build --configuration ${{ matrix.configuration }}
+    # Upload
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v2
+      with:
+        name: Artifact - ${{ matrix.configuration }}
+        path: build
