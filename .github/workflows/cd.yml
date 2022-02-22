@@ -27,14 +27,14 @@ jobs:
       with:
         dotnet-version: 6.x.x
     # Build
-    - name: build
+    - name: Build Pull request \#${{ github.event.number }}
       run: dotnet build
 
     - name: publish
       run: dotnet publish --output build --configuration ${{ matrix.configuration }}
     # Upload
-    - name: Upload build artifacts
+    - name: Upload built artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: Artifact - ${{ matrix.configuration }}
+        name: Artifact - ${{ matrix.configuration }} - \#${{ github.event.number }}
         path: build
