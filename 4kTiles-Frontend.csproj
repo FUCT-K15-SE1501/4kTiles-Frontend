@@ -9,12 +9,25 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\PNG\" />
+    <None Remove="Assets\PNG\Play.png" />
+    <None Remove="Assets\PNG\Triangle.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Assets\SVG\" />
     <Folder Include="MVVM\Models\" />
     <Folder Include="MVVM\ViewsModel\" />
     <Folder Include="Utils\" />
     <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\PNG\Play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Triangle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>
