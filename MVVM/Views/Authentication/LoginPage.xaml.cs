@@ -78,7 +78,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
     private void LoginPwd_GotFocus(object sender, RoutedEventArgs e)
     {
-      if(pwdBox.Password == "Password")
+      if (pwdBox.Password == "Password")
       {
         pwdBox.Clear();
       }

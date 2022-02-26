@@ -49,10 +49,11 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
     private void ConfirmPwd_GotFocus(object sender, RoutedEventArgs e)
     {
-      if(confirmPwd.Password == "Password")
+      if (confirmPwd.Password == "Password")
       {
         confirmPwd.Clear();
-      } else if(confirmPwd.Password != pwdBox.Password)
+      }
+      else if (confirmPwd.Password != pwdBox.Password)
       {
         Trace.WriteLine("Please confirm your password");
       }
@@ -60,7 +61,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
     private void Username_GotFocus(object sender, RoutedEventArgs e)
     {
-      if(usernameBox.Text == "Username")
+      if (usernameBox.Text == "Username")
       {
         usernameBox.Clear();
       }
