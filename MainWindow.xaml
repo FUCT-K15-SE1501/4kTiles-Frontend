@@ -12,8 +12,7 @@
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
-        WindowStartupLocation="CenterScreen"
-        xmlns:uc="clr-namespace:_4kTiles_Frontend.MVVM.Views.InputBox">
+        WindowStartupLocation="CenterScreen">
   <Border Background="White"
           CornerRadius="25">
     <Border.Clip>
@@ -51,13 +50,7 @@
         <Border Style="{StaticResource topLongRect}" />
         <Border Style="{StaticResource bottomLongRect}" />
         <Border Style="{StaticResource bottomLogo}">
-
         </Border>
-        <!--<uc:SongName Grid.ColumnSpan="2"
-                     Margin="111,55,0,155"
-                     Grid.Column="1"
-                     HorizontalAlignment="Left"
-                     Width="400" />-->
       </Grid>
       <!--Right panel-->
       <Grid Grid.Column="1">
