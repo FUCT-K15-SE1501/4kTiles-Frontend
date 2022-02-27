@@ -1,4 +1,4 @@
-﻿<Window x:Class="_4kTiles_Frontend.MainWindow"
+<Window x:Class="_4kTiles_Frontend.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -26,7 +26,32 @@
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <!--Left panel-->
-      <Grid Grid.Column="0"></Grid>
+      <Grid Grid.Column="0"
+            Style="{StaticResource leftCardStyle}">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="100" />
+          <ColumnDefinition Width="*" />
+          <ColumnDefinition Width="100" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+          <RowDefinition Height="360" />
+          <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Border Style="{StaticResource leftCardHeader}">
+          <Border Margin="10"
+                  Background="#4A4E69"
+                  CornerRadius="10,5,20,5">
+            <Image Stretch="Fill" />
+          </Border>
+        </Border>
+        <Border Style="{StaticResource verticalNav}"
+                Margin="0,100,0,270"
+                Grid.RowSpan="2" />
+        <Border Style="{StaticResource topLongRect}" />
+        <Border Style="{StaticResource bottomLongRect}" />
+        <Border Style="{StaticResource bottomLogo}">
+        </Border>
+      </Grid>
       <!--Right panel-->
       <Grid Grid.Column="1">
         <Grid.RowDefinitions>
@@ -67,7 +92,7 @@
             <Rectangle Width="560"
                        Height="50"
                        MouseDown="Rectangle_MouseDown"
-                       Fill="White"/>
+                       Fill="White" />
             <Border CornerRadius="5">
               <Label Content="_"
                      MouseDown="Label_MouseDown_1" />
