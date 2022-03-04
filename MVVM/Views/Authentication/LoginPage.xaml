@@ -33,7 +33,7 @@
           <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Style="{StaticResource leftCardHeader}">
-          <Image Source="pack://application:,,,/Assets/PNG/Play.png"
+          <Image Source="pack://application:,,,/Assets/PNG/Note.png"
                  Width="50"
                  Height="50"
                  VerticalAlignment="Center"

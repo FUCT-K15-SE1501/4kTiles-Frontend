@@ -5,5 +5,6 @@
     <ResourceDictionary Source="Styles/Style2.xaml"/>
     <ResourceDictionary Source="Styles/LeftCardStyle.xaml"/>
     <ResourceDictionary Source="Styles/LoginPageStyle.xaml"/>
+    <ResourceDictionary Source="Styles/ButtonControlStyle.xaml"/>
   </ResourceDictionary.MergedDictionaries>
 </ResourceDictionary>
