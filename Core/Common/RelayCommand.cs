@@ -1,14 +1,14 @@
-﻿using System;
+using System;
 using System.Windows.Input;
 
 namespace _4kTiles_Frontend.Core.Functions
 {
-    internal class RelayCommand: ICommand
+    public class RelayCommand: ICommand
     {
-        private Action<object> _execute;
-        private Func<object, bool> _canExecute;
+        private readonly Action<object> _execute;
+        private readonly Func<object, bool> _canExecute;
 
-        public event EventHandler? CanExecuteChanged
+        public event EventHandler CanExecuteChanged
         {
             add {CommandManager.RequerySuggested += value; }
             remove {CommandManager.RequerySuggested -= value; }
@@ -20,12 +20,12 @@ namespace _4kTiles_Frontend.Core.Functions
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object? parameter)
+        public bool CanExecute(object parameter)
         {
             return _canExecute == null || _canExecute(parameter);
         }
 
-        public void Execute(object? parameter)
+        public void Execute(object parameter)
         {
             _execute(parameter);
         }

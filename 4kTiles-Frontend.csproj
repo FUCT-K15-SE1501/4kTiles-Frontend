@@ -9,21 +9,30 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Assets\PNG\akar-icons_info.png" />
-    <None Remove="Assets\PNG\Flag.png" />
-    <None Remove="Assets\PNG\Note.png" />
-    <None Remove="Assets\PNG\Pen.png" />
-    <None Remove="Assets\PNG\Play.png" />
-    <None Remove="Assets\PNG\Triangle.png" />
-    <None Remove="Assets\PNG\Xicon.png" />
+    <Folder Include="MVVM\Models\" />
+    <Folder Include="MVVM\ViewsModel\" />
+    <Folder Include="MVVM\Views\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\SVG\" />
-    <Folder Include="MVVM\Models\" />
-    <Folder Include="MVVM\ViewsModel\" />
-    <Folder Include="Utils\" />
-    <Folder Include="Services\" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\PNG\Play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Triangle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

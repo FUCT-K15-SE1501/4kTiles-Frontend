@@ -33,7 +33,7 @@
           <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Border Style="{StaticResource leftCardHeader}">
-          <Image Source="pack://application:,,,/Assets/PNG/Note.png"
+          <Image Source="pack://application:,,,/Assets/PNG/Play.png"
                  Width="50"
                  Height="50"
                  VerticalAlignment="Center"
@@ -84,7 +84,6 @@
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
                    FontSize="24"
-                   Text="Username"
                    GotFocus="LoginUsername_GotFocus" />
         </Border>
         <Border BorderThickness="1"
@@ -96,7 +95,6 @@
                 CornerRadius="10"
                 Grid.RowSpan="2">
           <PasswordBox x:Name="pwdBox"
-                       Password="Password"
                        BorderThickness="0"
                        Background="Transparent"
                        HorizontalContentAlignment="Center"
