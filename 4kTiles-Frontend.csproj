@@ -9,8 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\PNG\akar-icons_info.png" />
+    <None Remove="Assets\PNG\Flag.png" />
+    <None Remove="Assets\PNG\Note.png" />
+    <None Remove="Assets\PNG\Pen.png" />
     <None Remove="Assets\PNG\Play.png" />
     <None Remove="Assets\PNG\Triangle.png" />
+    <None Remove="Assets\PNG\Xicon.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -22,10 +27,25 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\PNG\akar-icons_info.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Note.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Pen.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\PNG\Play.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\PNG\Triangle.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Xicon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
