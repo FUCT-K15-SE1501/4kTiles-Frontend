@@ -84,7 +84,7 @@
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
                    FontSize="24"
-                   Text="Username"
+                   Text="0lpsoo8rgq@cdfbhyu.site"
                    GotFocus="LoginUsername_GotFocus" />
         </Border>
         <Border BorderThickness="1"
@@ -96,7 +96,7 @@
                 CornerRadius="10"
                 Grid.RowSpan="2">
           <PasswordBox x:Name="pwdBox"
-                       Password="Password"
+                       Password="string"
                        BorderThickness="0"
                        Background="Transparent"
                        HorizontalContentAlignment="Center"

@@ -3,26 +3,46 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:_4kTiles_Frontend"
+        xmlns:MainVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel"
+        xmlns:HomeVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Home"
+        xmlns:homeView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Home"
+        xmlns:LibVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library"
+        xmlns:libView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library"
+        xmlns:SetsVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Settings"
+        xmlns:SetsView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Settings"
         mc:Ignorable="d"
         Title="4kTiles Editor"
         Height="720"
-        Width="1280"
+        Width="640"
         WindowStyle="None"
         ResizeMode="NoResize"
         Background="Transparent"
         AllowsTransparency="True"
         WindowStartupLocation="CenterScreen">
+  <Window.DataContext>
+    <MainVM:MainViewModel />
+  </Window.DataContext>
+
+  <Window.Resources>
+    <DataTemplate DataType="{x:Type HomeVM:HomeViewModel}">
+      <homeView:HomeView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type LibVM:LibraryViewModel}">
+      <libView:LibraryView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type SetsVM:SettingsViewModel}">
+      <SetsView:SettingsView />
+    </DataTemplate>
+  </Window.Resources>
   <Border Background="White"
           CornerRadius="25">
     <Border.Clip>
       <RectangleGeometry RadiusX="25"
                          RadiusY="25"
-                         Rect="0,0,1280,720" />
+                         Rect="0,0,640,720" />
     </Border.Clip>
     <Grid>
       <Grid.ColumnDefinitions>
-        <ColumnDefinition />
         <ColumnDefinition />
       </Grid.ColumnDefinitions>
       <!--Left panel-->
@@ -34,39 +54,22 @@
           <ColumnDefinition Width="100" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-          <RowDefinition Height="360" />
-          <RowDefinition Height="*" />
+          <RowDefinition Height="100" />
+          <RowDefinition Height="520" />
+          <RowDefinition Height="50" />
+          <RowDefinition Height="50" />
         </Grid.RowDefinitions>
         <Border Style="{StaticResource leftCardHeader}">
           <Border Margin="10"
                   Background="#4A4E69"
-                  CornerRadius="10,5,20,5">
+                  CornerRadius="20,5,5,5">
             <Image Stretch="Fill" />
           </Border>
         </Border>
-        <Border Style="{StaticResource verticalNav}"
-                Margin="0,100,0,270"
-                Grid.RowSpan="2" />
-        <Border Style="{StaticResource topLongRect}" />
-        <Border Style="{StaticResource bottomLongRect}" />
-        <Border Style="{StaticResource bottomLogo}">
-        </Border>
-      </Grid>
-      <!--Right panel-->
-      <Grid Grid.Column="1">
-        <Grid.RowDefinitions>
-          <RowDefinition Height="50" />
-          <RowDefinition Height="1" />
-          <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Border Grid.Row="0"
-                BorderThickness="1,0,0,1"
-                BorderBrush="#22223B"
-                VerticalAlignment="Stretch"
-                HorizontalAlignment="Stretch">
+        <Border Style="{StaticResource topLongRect}">
           <StackPanel Orientation="Horizontal"
                       HorizontalAlignment="Right"
-                      VerticalAlignment="Center">
+                      VerticalAlignment="Stretch">
             <StackPanel.Resources>
               <Style TargetType="Label">
                 <Setter Property="Width"
@@ -86,14 +89,15 @@
                 <Setter Property="Margin"
                         Value="0,0,10,0" />
                 <Setter Property="Height"
-                        Value="30" />
+                        Value="75" />
               </Style>
             </StackPanel.Resources>
             <Rectangle Width="560"
-                       Height="50"
+                       Height="100"
                        MouseDown="Rectangle_MouseDown"
-                       Fill="White" />
-            <Border CornerRadius="5">
+                       Fill="Transparent" />
+            <Border Background="LightGray"
+                    CornerRadius="5">
               <Label Content="_"
                      MouseDown="Label_MouseDown_1" />
             </Border>
@@ -104,6 +108,124 @@
             </Border>
           </StackPanel>
         </Border>
+
+        <!--Main view-->
+        <ContentControl Grid.Row="1"
+                        Grid.Column="1"
+                        Content="{Binding CurrentView}">
+        </ContentControl>
+
+        <!--Navigation-->
+        <Border Style="{StaticResource bottomLongRect}"
+                Grid.Row="2">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+              <Style TargetType="RadioButton">
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                      <Border BorderBrush="Transparent"
+                              BorderThickness="10"
+                              CornerRadius="10"
+                              Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                      </Border>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                  <Trigger Property="IsChecked"
+                           Value="True">
+                    <Setter Property="Background"
+                            Value="#4A4E69" />
+                  </Trigger>
+                  <Trigger Property="IsMouseOver"
+                           Value="True">
+                    <Setter Property="Background"
+                            Value="#4A4E69" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </Grid.Resources>
+
+            <RadioButton Grid.Column="0"
+                         Content="Library"
+                         Command="{Binding LibraryViewCommand}" />
+            <RadioButton Grid.Column="1"
+                         Content="Home"
+                         Command="{Binding HomeViewCommand}"
+                         IsChecked="True" />
+            <RadioButton Grid.Column="2"
+                         Content="Settings"
+                         Command="{Binding SettingsViewCommand}" />
+          </Grid>
+        </Border>
+
+        <!--Action-->
+        <Border Style="{StaticResource bottomLongRect}"
+                Grid.Row="3"
+                BorderThickness="0,1,0,0">
+          <Grid>
+            <Grid.ColumnDefinitions>
+              <ColumnDefinition />
+              <ColumnDefinition />
+              <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid.Resources>
+              <Style TargetType="Button">
+                <Setter Property="Background"
+                        Value="Transparent" />
+                <Setter Property="Foreground"
+                        Value="White" />
+                <Setter Property="FontSize"
+                        Value="20" />
+                <Setter Property="Template">
+                  <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                      <Border BorderBrush="Transparent"
+                              BorderThickness="10"
+                              CornerRadius="10"
+                              Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center"
+                                          VerticalAlignment="Center" />
+                      </Border>
+                    </ControlTemplate>
+                  </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                  <Trigger Property="IsMouseOver"
+                           Value="True">
+                    <Setter Property="Background"
+                            Value="#4A4E69" />
+                  </Trigger>
+                </Style.Triggers>
+              </Style>
+            </Grid.Resources>
+            <Button Grid.Column="0"
+                    Content="Save" />
+            <Button Grid.Column="1"
+                    Content="Import" />
+            <Button Grid.Column="2"
+                    Content="Export" />
+          </Grid>
+        </Border>
+
+        <!--Play-->
+        <Border Style="{StaticResource bottomLogo}"
+                Grid.Row="2"
+                Grid.RowSpan="2" />
       </Grid>
     </Grid>
   </Border>
