@@ -9,7 +9,7 @@
         Height="70">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
-      <ColumnDefinition Width="188" />
+      <ColumnDefinition Width="94" />
     </Grid.ColumnDefinitions>
     <Grid Grid.Column="0">
       <Border HorizontalAlignment="Stretch"
@@ -19,13 +19,13 @@
         <StackPanel>
           <TextBlock Text="Song's name"
                      FontSize="24"
-                     Width="230"
+                     Width="330"
                      Height="33"
                      Margin="0,5,0,0"
                      Foreground="White" />
           <TextBlock Text="Author"
                      FontSize="14"
-                     Width="230"
+                     Width="330"
                      Height="20"
                      Margin="0,3,0,0"
                      Foreground="White" />
@@ -33,15 +33,11 @@
       </Border>
     </Grid>
     <Grid Grid.Column="1">
-      <StackPanel Width="188"
+      <StackPanel Width="94"
                   HorizontalAlignment="Right"
                   Orientation="Horizontal">
         <Button x:Name="infoBtn"
-                Style="{StaticResource editButton}"
-                HorizontalAlignment="Left" />
-
-        <Button x:Name="delBtn"
-                Style="{StaticResource flagButton}" />
+                Style="{StaticResource editButton}"/>
       </StackPanel>
     </Grid>
   </Grid>
