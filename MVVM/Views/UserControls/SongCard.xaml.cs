@@ -1,4 +1,5 @@
-﻿using System;
+using _4kTiles_Frontend.MVVM.Views.Authentication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,14 +16,27 @@ using System.Windows.Shapes;
 
 namespace _4kTiles_Frontend.MVVM.Views.UserControls
 {
-  /// <summary>
-  /// Interaction logic for SongCard.xaml
-  /// </summary>
-  public partial class SongCard : UserControl
-  {
-    public SongCard()
+    /// <summary>
+    /// Interaction logic for SongCard.xaml
+    /// </summary>
+    public partial class SongCard : UserControl
     {
-      InitializeComponent();
+        
+        public SongCard()
+        {
+            InitializeComponent();
+        }
+
+        private void delBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MainWindow mainWindow = new MainWindow
+            {
+                Content = new CustomModalDialog(),
+                Owner = Application.Current.MainWindow
+            };
+
+            mainWindow.Show();
+        }
+
     }
-  }
 }

@@ -27,7 +27,9 @@ namespace _4kTiles_Frontend.MVVM.Views.UserControls
 
         private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            this.Visibility = Visibility.Collapsed;
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            window?.Close();
+            //this.Visibility = Visibility.Collapsed;
         }
     }
 }
