@@ -1,4 +1,3 @@
-using _4kTiles_Frontend.MVVM.Views.Authentication;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,26 +16,20 @@ using System.Windows.Shapes;
 namespace _4kTiles_Frontend.MVVM.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for SongCard.xaml
+    /// Interaction logic for CustomModalDialog.xaml
     /// </summary>
-    public partial class SongCard : UserControl
+    public partial class CustomModalDialog : UserControl
     {
-        
-        public SongCard()
+        public CustomModalDialog()
         {
             InitializeComponent();
         }
 
-        private void delBtn_Click(object sender, RoutedEventArgs e)
+        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            MainWindow mainWindow = new MainWindow
-            {
-                Content = new CustomModalDialog(),
-                Owner = Application.Current.MainWindow
-            };
-
-            mainWindow.Show();
+            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+            window?.Close();
+            //this.Visibility = Visibility.Collapsed;
         }
-
     }
 }

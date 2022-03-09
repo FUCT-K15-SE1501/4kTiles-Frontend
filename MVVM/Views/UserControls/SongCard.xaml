@@ -10,7 +10,7 @@
                  UriSource="pack://application:,,,/Assets/PNG/Flag.png"/>
   </UserControl.Resources>-->
   <Grid Width="462"
-        Height="70">
+        Height="70" x:Name="MyGrid">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
       <ColumnDefinition Width="188" />
@@ -44,7 +44,7 @@
                 Style="{StaticResource songInfoButton}"
                 HorizontalAlignment="Left" />
         <Button x:Name="delBtn"
-                Style="{StaticResource flagButton}" />
+                Style="{StaticResource flagButton}" Click="delBtn_Click" />
       </StackPanel>
     </Grid>
   </Grid>
