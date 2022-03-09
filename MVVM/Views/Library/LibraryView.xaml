@@ -4,12 +4,110 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library"
+             xmlns:LibVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library"
+             xmlns:PublicView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library.Public"
+             xmlns:PublicVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Public"
+             xmlns:PrivateView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library.Private"
+             xmlns:PrivateVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Private"
+             xmlns:AccountsView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library.Account"
+             xmlns:AccountsVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Account"
+             xmlns:ReportsView="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library.Report"
+             xmlns:ReportsVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Report"
              mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
-  <Grid>
-    <Label Content="Library"
-           FontSize="40"
-           Foreground="White" />
+             d:DesignHeight="520"
+             d:DesignWidth="640">
+  <UserControl.DataContext>
+    <LibVM:LibraryViewModel />
+  </UserControl.DataContext>
+  <UserControl.Resources>
+    <DataTemplate DataType="{x:Type PublicVM:PublicViewModel}">
+      <PublicView:PublicView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type PrivateVM:PrivateViewModel}">
+      <PrivateView:PrivateView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type AccountsVM:AccountsViewModel}">
+      <AccountsView:AccountsView />
+    </DataTemplate>
+    <DataTemplate DataType="{x:Type ReportsVM:ReportsViewModel}">
+      <ReportsView:ReportsView />
+    </DataTemplate>
+  </UserControl.Resources>
+  <Grid HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+    <Grid.ColumnDefinitions>
+      <ColumnDefinition Width="100" />
+      <ColumnDefinition />
+      <ColumnDefinition Width="100" />
+    </Grid.ColumnDefinitions>
+    <Grid.RowDefinitions>
+      <RowDefinition />
+      <RowDefinition />
+    </Grid.RowDefinitions>
+    <Grid.Resources>
+      <Style TargetType="RadioButton">
+        <Setter Property="Background"
+                Value="#22223B" />
+        <Setter Property="Foreground"
+                Value="#E5E5E5" />
+        <Setter Property="FontSize"
+                Value="20" />
+        <Setter Property="Template">
+          <Setter.Value>
+            <ControlTemplate TargetType="RadioButton">
+              <Border BorderBrush="#4A4E69"
+                      BorderThickness="0,1,0,1"
+                      Background="#22223B">
+                <Border Background="{TemplateBinding Background}"
+                        BorderBrush="Transparent"
+                        BorderThickness="15"
+                        CornerRadius="15">
+                  <Border.Clip>
+                    <RectangleGeometry Rect="0,0,100,260" />
+                  </Border.Clip>
+                  <ContentPresenter HorizontalAlignment="Center"
+                                    VerticalAlignment="Center" />
+                </Border>
+              </Border>
+            </ControlTemplate>
+          </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+          <Trigger Property="IsChecked"
+                   Value="True">
+            <Setter Property="Background"
+                    Value="#4A4E69" />
+          </Trigger>
+          <Trigger Property="IsMouseOver"
+                   Value="True">
+            <Setter Property="Background"
+                    Value="#4A4E69" />
+          </Trigger>
+        </Style.Triggers>
+      </Style>
+    </Grid.Resources>
+    <RadioButton Grid.Row="0"
+                 Grid.Column="0"
+                 Content="Public songs"
+                 IsChecked="True"
+                 Command="{Binding PublicCommand}" />
+    <RadioButton Grid.Row="1"
+                 Grid.Column="0"
+                 Content="Accounts"
+                 Command="{Binding AccountsCommand}" />
+    <RadioButton Grid.Row="0"
+                 Grid.Column="2"
+                 Content="Private songs"
+                 Command="{Binding PrivateCommand}" />
+    <RadioButton Grid.Row="1"
+                 Grid.Column="2"
+                 Content="Reports"
+                 Command="{Binding ReportsCommand}" />
+    <Grid HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          Grid.Column="1"
+          Grid.RowSpan="2">
+      <ContentControl Content="{Binding CurrentView}" />
+    </Grid>
   </Grid>
 </UserControl>

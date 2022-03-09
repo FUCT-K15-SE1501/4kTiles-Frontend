@@ -92,10 +92,12 @@
                         Value="75" />
               </Style>
             </StackPanel.Resources>
-            <Rectangle Width="560"
-                       Height="100"
-                       MouseDown="Rectangle_MouseDown"
-                       Fill="Transparent" />
+            <Label Width="560"
+                   Height="100"
+                   MouseDown="Rectangle_MouseDown"
+                   Background="Transparent"
+                   FontSize="48"
+                   Content="{Binding CurrentTitle}" />
             <Border Background="LightGray"
                     CornerRadius="5">
               <Label Content="_"
@@ -111,7 +113,8 @@
 
         <!--Main view-->
         <ContentControl Grid.Row="1"
-                        Grid.Column="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
                         Content="{Binding CurrentView}">
         </ContentControl>
 

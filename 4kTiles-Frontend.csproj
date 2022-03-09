@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Fonts\vffree04.ttf" />
     <None Remove="Assets\PNG\akar-icons_info.png" />
     <None Remove="Assets\PNG\Flag.png" />
     <None Remove="Assets\PNG\Note.png" />
@@ -20,10 +21,8 @@
 
   <ItemGroup>
     <Folder Include="Assets\SVG\" />
-    <Folder Include="DataObjects\DAO\Account\" />
-    <Folder Include="MVVM\Models\" />
     <Folder Include="MVVM\Base\" />
-    <Folder Include="Services\Navigation\" />
+    <Folder Include="MVVM\Models\Library\List\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
@@ -33,6 +32,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Fonts\vffree04.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\PNG\akar-icons_info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>

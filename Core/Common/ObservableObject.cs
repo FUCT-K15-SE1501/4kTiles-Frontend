@@ -3,7 +3,7 @@ using System.Runtime.CompilerServices;
 
 namespace _4kTiles_Frontend.Core.Functions
 {
-    public class ObservableObject: INotifyPropertyChanged
+    public class ObservableObject : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 

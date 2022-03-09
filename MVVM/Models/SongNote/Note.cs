@@ -1,0 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace _4kTiles_Frontend.MVVM.Models.SongNote
+{
+    public class Note
+    {
+        // relative to current row [0,1,2,3]
+        public int Position { get; set; }
+        public List<NoteType> noteType { get; set; }
+        public bool touchOptional { get; set; } = false;
+    }
+}
