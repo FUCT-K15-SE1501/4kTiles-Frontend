@@ -6,7 +6,7 @@ namespace _4kTiles_Frontend
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow: Window
+    public partial class MainWindow : Window
     {
         public MainWindow()
         {

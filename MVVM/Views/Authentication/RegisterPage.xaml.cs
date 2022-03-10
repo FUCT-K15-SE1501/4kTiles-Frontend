@@ -2,6 +2,8 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
 
+using _4kTiles_Frontend.MVVM.Models.Auth;
+using _4kTiles_Frontend.MVVM.Views.Common;
 using _4kTiles_Frontend.Services.ApiClient;
 
 namespace _4kTiles_Frontend.MVVM.Views.Authentication
@@ -26,24 +28,65 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
         private void Close_Window(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+            Close();
         }
 
-        private void RegisBtn_Click(object sender, RoutedEventArgs e)
+        private async void RegisBtn_Click(object sender, RoutedEventArgs e)
         {
-            Trace.WriteLine("Registered!");
+            var spinner = new Spinner();
+            spinner.Show();
+
+            if (string.IsNullOrWhiteSpace(emailBox.Text))
+            {
+                MessageBox.Show("Username can't be empty");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(usernameBox.Text))
+            {
+                MessageBox.Show("Username can't be empty");
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(pwdBox.Password))
+            {
+                MessageBox.Show("Password cant be empty");
+                return;
+            }
+
+            var dao = new RegisterModel()
+            {
+                UserName = usernameBox.Text,
+                Email = emailBox.Text,
+                Password = pwdBox.Password
+            };
+
+            var registerTask = await Client.RequestAsync<string>("account/registeruser", RequestMethod.POST, dao);
+
+            if (registerTask != null)
+            {
+                MessageBox.Show("Account registered. please check your mail box!", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                var loginPage = new LoginPage();
+                loginPage.Show();
+                Close();
+            }
+            else
+            {
+                MessageBox.Show("Failed to register", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            spinner.Close();
         }
 
         private void LoginPage_Click(object sender, RoutedEventArgs e)
         {
-            this.Hide();
             LoginPage loginPage = new LoginPage();
             loginPage.Show();
+            Close();
         }
 
         private void ConfirmPwd_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (confirmPwd.Password == "Password")
+            if (!string.IsNullOrWhiteSpace(confirmPwd.Password))
             {
                 confirmPwd.Clear();
             }
@@ -55,7 +98,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
         private void Username_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (usernameBox.Text == "Username")
+            if (!string.IsNullOrWhiteSpace(usernameBox.Text))
             {
                 usernameBox.Clear();
             }
@@ -63,7 +106,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
         private void Email_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (emailBox.Text == "Email")
+            if (!string.IsNullOrWhiteSpace(emailBox.Text))
             {
                 emailBox.Clear();
             }
@@ -71,7 +114,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
         private void Password_GotFocus(object sender, RoutedEventArgs e)
         {
-            if (pwdBox.Password == "Password")
+            if (!string.IsNullOrWhiteSpace(pwdBox.Password))
             {
                 pwdBox.Clear();
             }

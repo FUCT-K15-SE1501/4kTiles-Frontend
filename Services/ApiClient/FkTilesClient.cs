@@ -5,8 +5,8 @@ using System.Text.Json;
 using System.Threading.Tasks;
 
 using _4kTiles_Frontend.DataObjects;
-using _4kTiles_Frontend.DataObjects.DAO.Auth;
-using _4kTiles_Frontend.DataObjects.DTO.Account;
+using _4kTiles_Frontend.MVVM.Models.Account;
+using _4kTiles_Frontend.MVVM.Models.Auth;
 using _4kTiles_Frontend.Services.Configuration;
 
 namespace _4kTiles_Frontend.Services.ApiClient
@@ -25,9 +25,14 @@ namespace _4kTiles_Frontend.Services.ApiClient
     {
         bool IsUserLoggedIn();
 
-        Task<bool> Login(LoginDAO dao);
+        Task<bool> Login(LoginModel dao);
 
-        Task<Response<T?>?> RequestAsync<T>(string endpoint, RequestMethod? method, object? body);
+        Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object? body = null);
+
+        string GetJsonString<T>(T obj);
+        T GetJsonObject<T>(string jsonString);
+
+        AccountModel GetAccount();
     }
 
     public class FkTilesClient : IFkTilesClient
@@ -43,7 +48,7 @@ namespace _4kTiles_Frontend.Services.ApiClient
         private readonly JsonSerializerOptions _jsonSerializerOptions;
         private readonly HttpClient _client;
         private string? _jwtToken = "";
-        private AccountDTO? _account = null;
+        private AccountModel? _account = null;
 
         // Constructor
         private FkTilesClient()
@@ -74,7 +79,7 @@ namespace _4kTiles_Frontend.Services.ApiClient
         }
 
         // Login for token
-        public async Task<bool> Login(LoginDAO? dao)
+        public async Task<bool> Login(LoginModel? dao)
         {
             // Return if user logged in or input empty
             if (IsUserLoggedIn() || dao == null)
@@ -90,7 +95,7 @@ namespace _4kTiles_Frontend.Services.ApiClient
 
             _jwtToken = loginResponse.Data;
 
-            var accountResponse = await RequestAsync<AccountDTO>("Account/Account", RequestMethod.GET);
+            var accountResponse = await RequestAsync<AccountModel>("Account/Account", RequestMethod.GET);
 
             if (accountResponse == null)
                 return false;
@@ -100,8 +105,13 @@ namespace _4kTiles_Frontend.Services.ApiClient
             return true;
         }
 
+        public AccountModel GetAccount()
+        {
+            return _account;
+        }
+
         // Request method
-        public async Task<Response<T?>?> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object? body = null)
+        public async Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object? body = null)
         {
             if (!string.IsNullOrWhiteSpace(_jwtToken))
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _jwtToken);
@@ -124,6 +134,7 @@ namespace _4kTiles_Frontend.Services.ApiClient
                     JsonSerializer.Serialize(body, _jsonSerializerOptions),
                     Encoding.UTF8,
                     System.Net.Mime.MediaTypeNames.Application.Json);
+
                 response = method switch
                 {
                     RequestMethod.POST => await _client.PostAsync(endpoint, stringContent),
@@ -141,7 +152,17 @@ namespace _4kTiles_Frontend.Services.ApiClient
             var content = await response.Content.ReadAsStringAsync();
 
             // deserialize content to object
-            return JsonSerializer.Deserialize<Response<T?>?>(content, _jsonSerializerOptions);
+            return JsonSerializer.Deserialize<Response<T?>>(content, _jsonSerializerOptions);
+        }
+
+        public string GetJsonString<T>(T obj)
+        {
+            return JsonSerializer.Serialize(obj, _jsonSerializerOptions);
+        }
+
+        public T GetJsonObject<T>(string jsonString)
+        {
+            return JsonSerializer.Deserialize<T>(jsonString, _jsonSerializerOptions);
         }
     }
 }

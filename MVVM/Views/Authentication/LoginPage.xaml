@@ -84,7 +84,7 @@
                    HorizontalContentAlignment="Center"
                    VerticalContentAlignment="Center"
                    FontSize="24"
-                   Text="0lpsoo8rgq@cdfbhyu.site"
+                   Text="user@example.com"
                    GotFocus="LoginUsername_GotFocus" />
         </Border>
         <Border BorderThickness="1"
