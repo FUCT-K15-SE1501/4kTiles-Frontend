@@ -21,7 +21,6 @@ namespace _4kTiles_Frontend.MVVM.Views.UserControls
     /// </summary>
     public partial class SongCard : UserControl
     {
-        
         public SongCard()
         {
             InitializeComponent();

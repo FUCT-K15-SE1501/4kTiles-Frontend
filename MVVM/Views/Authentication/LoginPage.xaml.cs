@@ -1,21 +1,10 @@
-using _4kTiles_Frontend.DataObjects.DAO.Auth;
-using _4kTiles_Frontend.MVVM.Views.Authentication;
-using _4kTiles_Frontend.Services.ApiClient;
-
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+
+using _4kTiles_Frontend.MVVM.Models.Auth;
+using _4kTiles_Frontend.MVVM.Views.Common;
+using _4kTiles_Frontend.Services.ApiClient;
 
 namespace _4kTiles_Frontend.MVVM.Views.Authentication
 {
@@ -50,6 +39,9 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
         {
+            var spinner = new Spinner();
+            spinner.Show();
+
             if (string.IsNullOrWhiteSpace(usernameBox.Text))
             {
                 MessageBox.Show("Username can't be empty");
@@ -62,7 +54,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
                 return;
             }
 
-            LoginDAO dao = new()
+            LoginModel dao = new()
             {
                 Email = usernameBox.Text,
                 Password = pwdBox.Password
@@ -73,12 +65,14 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
             if (loginTask && Client.IsUserLoggedIn())
             {
                 MainWindow mainWindow = new MainWindow();
-                mainWindow.ShowDialog();
+                mainWindow.Show();
                 Close();
-            } else
-            {
-                MessageBox.Show("Failed to login", "Failed", MessageBoxButton.OK, MessageBoxImage.Warning);
             }
+            else
+            {
+                MessageBox.Show("Failed to login", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            spinner.Close();
         }
 
         private void Close_Window(object sender, MouseButtonEventArgs e)
@@ -94,7 +88,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
         private void SignUp_Click(object sender, RoutedEventArgs e)
         {
             RegisterPage registerPage = new RegisterPage();
-            registerPage.ShowDialog();
+            registerPage.Show();
             Close();
         }
 
