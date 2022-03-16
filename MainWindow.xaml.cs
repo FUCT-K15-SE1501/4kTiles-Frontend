@@ -1,6 +1,8 @@
 using System.Windows;
 using System.Windows.Input;
 
+using _4kTiles_Frontend.MVVM.Views.Editor;
+
 namespace _4kTiles_Frontend
 {
     /// <summary>
@@ -27,6 +29,13 @@ namespace _4kTiles_Frontend
         {
             if (e.LeftButton == MouseButtonState.Pressed)
                 DragMove();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var editorWindow = new EditorWindow();
+            editorWindow.Show();
+            Close();
         }
     }
 }

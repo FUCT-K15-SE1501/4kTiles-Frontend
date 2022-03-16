@@ -11,9 +11,13 @@ namespace _4kTiles_Frontend.MVVM.Models.Library.Items
         public int CreatorId { get; set; }
         public string CreatorName { get; set; } = null!;
         public int Bpm { get; set; }
-        public string Notes { get; set; } = null!;
         public DateTime ReleaseDate { get; set; }
         public DateTime UpdatedDate { get; set; }
         public ICollection<string> Genres { get; set; } = null!;
+
+        public override string ToString()
+        {
+            return $"SongId: {SongId}\nSongName: {SongName}\nAuthor: {Author}\nCreatorId: {CreatorId}\nCreatorName: {CreatorName}\nBpm: {Bpm}\nReleaseDate: {ReleaseDate}";
+        }
     }
 }
