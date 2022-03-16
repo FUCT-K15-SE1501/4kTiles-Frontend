@@ -217,11 +217,14 @@
               </Style>
             </Grid.Resources>
             <Button Grid.Column="0"
-                    Content="Save" />
+                    Content="Save"
+                    Visibility="Hidden" />
             <Button Grid.Column="1"
-                    Content="Import" />
+                    Content="Create"
+                    Click="Button_Click" />
             <Button Grid.Column="2"
-                    Content="Export" />
+                    Content="Export"
+                    Visibility="Hidden" />
           </Grid>
         </Border>
 

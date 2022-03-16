@@ -27,7 +27,7 @@ namespace _4kTiles_Frontend.Services.ApiClient
 
         Task<bool> Login(LoginModel dao);
 
-        Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object? body = null);
+        Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object body = null);
 
         string GetJsonString<T>(T obj);
         T GetJsonObject<T>(string jsonString);
@@ -143,10 +143,6 @@ namespace _4kTiles_Frontend.Services.ApiClient
                     _ => throw new System.Exception("Invalid request method"),
                 };
             }
-
-            // check response
-            if (!response.IsSuccessStatusCode)
-                return default;
 
             // get content from response
             var content = await response.Content.ReadAsStringAsync();

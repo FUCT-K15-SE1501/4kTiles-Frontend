@@ -23,6 +23,7 @@
     <Folder Include="Assets\SVG\" />
     <Folder Include="MVVM\Base\" />
     <Folder Include="MVVM\Models\Library\List\" />
+    <Folder Include="Services\Editor\" />
     <Folder Include="Utils\" />
   </ItemGroup>
 
