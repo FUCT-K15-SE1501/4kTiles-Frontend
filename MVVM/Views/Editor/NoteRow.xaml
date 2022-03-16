@@ -1,0 +1,138 @@
+<UserControl x:Class="_4kTiles_Frontend.MVVM.Views.Editor.NoteRow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.Editor"
+             xmlns:EditorVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Editor"
+             mc:Ignorable="d"
+             d:DesignWidth="440"
+             d:DataContext="{d:DesignInstance EditorVM:NoteRowViewModel}">
+  <Grid VerticalAlignment="Center"
+        HorizontalAlignment="Stretch"
+        Height="250"
+        Width="440"
+        Margin="0,5">
+    <Grid.RowDefinitions>
+      <RowDefinition Height="110" />
+      <RowDefinition Height="140" />
+    </Grid.RowDefinitions>
+    <Border Grid.Row="0">
+      <Border.Clip>
+        <RectangleGeometry RadiusX="20"
+                           RadiusY="20"
+                           Rect="0,0,440,110" />
+      </Border.Clip>
+      <Grid Background="#E5E5E5"
+            Height="110">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+          <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+        <Grid.Resources>
+          <Style TargetType="RadioButton">
+            <Setter Property="Background"
+                    Value="#C4C4C4" />
+            <Setter Property="Template">
+              <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+                  <Border Background="{TemplateBinding Background}"
+                          BorderThickness="10"
+                          CornerRadius="20">
+                    <ContentPresenter VerticalAlignment="Center"
+                                      HorizontalAlignment="Center" />
+                  </Border>
+                </ControlTemplate>
+              </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+              <Trigger Property="IsChecked"
+                       Value="True">
+                <Setter Property="Background"
+                        Value="#22223B" />
+              </Trigger>
+              <Trigger Property="IsMouseOver"
+                       Value="True">
+                <Setter Property="Background"
+                        Value="#AAAAAA" />
+              </Trigger>
+            </Style.Triggers>
+          </Style>
+        </Grid.Resources>
+        <RadioButton IsChecked="{Binding SelectedNote.Position}"
+                     Grid.Column="0"
+                     Content="Note 1"
+                     Command="{Binding Note1Command}" />
+        <RadioButton Grid.Column="1"
+                     Content="Note 2"
+                     Command="{Binding Note2Command}" />
+        <RadioButton Grid.Column="2"
+                     Content="Note 3"
+                     Command="{Binding Note3Command}" />
+        <RadioButton Grid.Column="3"
+                     Content="Note 4"
+                     Command="{Binding Note4Command}" />
+      </Grid>
+    </Border>
+    <Grid Grid.Row="1">
+      <Grid.RowDefinitions>
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+        <RowDefinition />
+      </Grid.RowDefinitions>
+      <Grid.ColumnDefinitions>
+        <ColumnDefinition Width="100" />
+        <ColumnDefinition Width="*" />
+      </Grid.ColumnDefinitions>
+      <Grid.Resources>
+        <Style TargetType="TextBox">
+          <Setter Property="BorderThickness"
+                  Value="0,0,0,1" />
+          <Setter Property="HorizontalAlignment"
+                  Value="Stretch" />
+          <Setter Property="HorizontalContentAlignment"
+                  Value="Center" />
+          <Setter Property="VerticalContentAlignment"
+                  Value="Bottom" />
+        </Style>
+      </Grid.Resources>
+      <Label Grid.Column="0"
+             Grid.Row="0"
+             Content="MidiKey" />
+      <TextBox Grid.Column="1"
+               Grid.Row="0"
+               Text="{Binding SelectedNote.noteType[0].MidiKey}" />
+      <Label Grid.Column="0"
+             Grid.Row="1"
+             Content="Volumn" />
+      <TextBox Grid.Column="1"
+               Grid.Row="1"
+               Text="{Binding SelectedNote.noteType[0].Volumn}" />
+      <Label Grid.Column="0"
+             Grid.Row="2"
+             Content="Delay" />
+      <TextBox Grid.Column="1"
+               Grid.Row="2"
+               Text="{Binding SelectedNote.noteType[0].Delay}" />
+
+      <Label Grid.Column="0"
+             Grid.Row="3"
+             Content="Length" />
+      <TextBox Grid.Column="1"
+               Grid.Row="3"
+               Text="{Binding SelectedNote.noteType[0].Length}" />
+      <Label Grid.Column="0"
+             Grid.Row="4"
+             Content="Touch optional?" />
+      <CheckBox Grid.Column="1"
+                Grid.Row="5"
+                IsChecked="{Binding SelectedNote.touchOptional}"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center" />
+    </Grid>
+  </Grid>
+</UserControl>

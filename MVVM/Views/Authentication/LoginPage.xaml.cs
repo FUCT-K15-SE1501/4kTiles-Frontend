@@ -4,6 +4,7 @@ using System.Windows.Input;
 
 using _4kTiles_Frontend.MVVM.Models.Auth;
 using _4kTiles_Frontend.MVVM.Views.Common;
+using _4kTiles_Frontend.MVVM.Views.Editor;
 using _4kTiles_Frontend.Services.ApiClient;
 
 namespace _4kTiles_Frontend.MVVM.Views.Authentication
@@ -73,6 +74,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
                 MessageBox.Show("Failed to login", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             spinner.Close();
+            Close();
         }
 
         private void Close_Window(object sender, MouseButtonEventArgs e)
