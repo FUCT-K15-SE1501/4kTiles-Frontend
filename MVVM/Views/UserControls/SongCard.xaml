@@ -4,12 +4,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
-             xmlns:SongVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Public"
              mc:Ignorable="d">
-  <UserControl.DataContext>
-    <SongVM:SongOverviewViewModel />
-  </UserControl.DataContext>
-  <Grid Width="440"
+  <Grid Width="400"
         Height="70">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
@@ -25,13 +21,13 @@
                      FontSize="24"
                      Width="230"
                      Height="33"
-                     Margin="0,5,0,0"
+                     Margin="10,5,0,0"
                      Foreground="White" />
           <TextBlock Text="{Binding SongOverview.Author}"
                      FontSize="14"
                      Width="230"
                      Height="20"
-                     Margin="0,3,0,0"
+                     Margin="10,3,0,0"
                      Foreground="White" />
         </StackPanel>
       </Border>

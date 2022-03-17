@@ -17,7 +17,7 @@
               Background="#4A4E69"
               CornerRadius="10,0,0,10">
         <StackPanel>
-          <TextBlock Text="Account's name"
+          <TextBlock Text="{Binding AccountIns.UserName}"
                      FontSize="24"
                      Width="330"
                      Height="33"

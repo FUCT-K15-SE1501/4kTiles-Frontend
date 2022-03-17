@@ -1,9 +1,8 @@
 {
     "files.autoSave": "onFocusChange",
-    "editor.fontSize": 24,
+    "editor.fontSize": 15,
     "scm.inputFontSize": 20,
     "debug.console.fontSize": 24,
     "markdown.preview.fontSize": 24,
-    "terminal.integrated.fontSize": 20,
     "markdown.preview.lineHeight": 1.5
 }
