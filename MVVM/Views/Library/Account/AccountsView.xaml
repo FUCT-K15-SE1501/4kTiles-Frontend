@@ -15,56 +15,5 @@
     <Label Content="Account"
            Foreground="White"
            FontSize="36" />
-    <Border Grid.Row="1">
-      <Border.Clip>
-        <RectangleGeometry RadiusX="20"
-                           RadiusY="20"
-                           Rect="0,0,440,110" />
-      </Border.Clip>
-      <Grid Background="#E5E5E5"
-            Height="110">
-        <Grid.ColumnDefinitions>
-          <ColumnDefinition />
-          <ColumnDefinition />
-          <ColumnDefinition />
-          <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-        <Grid.Resources>
-          <Style TargetType="RadioButton">
-            <Setter Property="Background"
-                    Value="#C4C4C4" />
-            <Setter Property="Template">
-              <Setter.Value>
-                <ControlTemplate TargetType="RadioButton">
-                  <Border Background="{TemplateBinding Background}"
-                          BorderThickness="10"
-                          CornerRadius="20">
-                    <ContentPresenter VerticalAlignment="Center"
-                                      HorizontalAlignment="Center" />
-                  </Border>
-                </ControlTemplate>
-              </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-              <Trigger Property="IsChecked"
-                       Value="True">
-                <Setter Property="Background"
-                        Value="#22223B" />
-              </Trigger>
-              <Trigger Property="IsMouseOver"
-                       Value="True">
-                <Setter Property="Background"
-                        Value="#AAAAAA" />
-              </Trigger>
-            </Style.Triggers>
-          </Style>
-        </Grid.Resources>
-        <RadioButton Grid.Column="0"
-                     IsChecked="True" />
-        <RadioButton Grid.Column="1" />
-        <RadioButton Grid.Column="2" />
-        <RadioButton Grid.Column="3" />
-      </Grid>
-    </Border>
   </Grid>
 </UserControl>

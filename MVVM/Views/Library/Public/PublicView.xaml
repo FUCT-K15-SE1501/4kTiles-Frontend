@@ -7,7 +7,7 @@
              xmlns:PublicVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Public"
              xmlns:SongUC="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
              mc:Ignorable="d"
-             d:DesignHeight="720"
+             d:DesignHeight="520"
              d:DesignWidth="440">
   <UserControl.DataContext>
     <PublicVM:PublicViewModel />
@@ -15,6 +15,10 @@
   <UserControl.Resources>
   </UserControl.Resources>
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
     <StackPanel HorizontalAlignment="Stretch"
                 VerticalAlignment="Top"
                 Height="400"
@@ -39,6 +43,26 @@
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
+    </StackPanel>
+    <StackPanel Grid.Row="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Center">
+      <TextBox Width="120"
+               FontSize="30"
+               Text="{Binding SearchText}"/>
+      <Button Content="Search"
+              FontSize="30"
+              Margin="0,0,20,0"
+              Command="{Binding SearchCommand}" />
+      <Button Content="Prev"
+              FontSize="30"
+              Command="{Binding PrevCommand}" />
+      <Label Content="{Binding SelectedIndex}"
+             FontSize="30" />
+      <Button Content="Next"
+              FontSize="30"
+              Command="{Binding NextCommand}" />
     </StackPanel>
   </Grid>
 </UserControl>
