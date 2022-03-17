@@ -11,7 +11,9 @@
   <ItemGroup>
     <None Remove="Assets\Fonts\vffree04.ttf" />
     <None Remove="Assets\PNG\akar-icons_info.png" />
+    <None Remove="Assets\PNG\Backward.png" />
     <None Remove="Assets\PNG\Flag.png" />
+    <None Remove="Assets\PNG\Forward.png" />
     <None Remove="Assets\PNG\Note.png" />
     <None Remove="Assets\PNG\Pen.png" />
     <None Remove="Assets\PNG\Play.png" />
@@ -39,7 +41,13 @@
     <Resource Include="Assets\PNG\akar-icons_info.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\PNG\Backward.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\PNG\Flag.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\Forward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\PNG\Note.png">

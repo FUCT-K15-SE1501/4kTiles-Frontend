@@ -16,7 +16,8 @@
   </UserControl.Resources>
   <Grid>
     <StackPanel HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
+                VerticalAlignment="Top"
+                Height="400"
                 Orientation="Vertical"
                 Name="SongsContainer">
       <ItemsControl ItemsSource="{Binding SongsList}">
@@ -27,46 +28,14 @@
                     VerticalAlignment="Stretch">
               <Border BorderThickness="1"
                       BorderBrush="#22223B"
-                      CornerRadius="10">
+                      CornerRadius="10"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center">
                 <Grid Height="70">
-                  <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="188" />
-                  </Grid.ColumnDefinitions>
-                  <Grid Grid.Column="0">
-                    <Border HorizontalAlignment="Stretch"
-                            VerticalAlignment="Stretch"
-                            Background="#4A4E69"
-                            CornerRadius="10,0,0,10">
-                      <StackPanel>
-                        <TextBlock Text="{Binding SongOverview.SongName}"
-                                   FontSize="24"
-                                   Height="33"
-                                   Margin="10,5,0,0"
-                                   Foreground="White" />
-                        <TextBlock Text="{Binding SongOverview.Author}"
-                                   FontSize="14"
-                                   Height="20"
-                                   Margin="10,3,0,0"
-                                   Foreground="White" />
-                      </StackPanel>
-                    </Border>
-                  </Grid>
-                  <Grid Grid.Column="1"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch">
-                    <StackPanel HorizontalAlignment="Right"
-                                Orientation="Horizontal">
-                      <Button x:Name="infoBtn"
-                              Style="{StaticResource songInfoButton}"
-                              HorizontalAlignment="Left" />
-                      <Button x:Name="delBtn"
-                              Style="{StaticResource flagButton}" />
-                    </StackPanel>
-                  </Grid>
+                  <SongUC:SongCard />
                 </Grid>
               </Border>
-            </Border>
+              </Border>
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>

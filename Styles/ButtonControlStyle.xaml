@@ -241,15 +241,85 @@
     <Setter Property="Template">
       <Setter.Value>
         <ControlTemplate TargetType="Button">
-          <Border CornerRadius="10"
+          <Border x:Name="border"
+                  CornerRadius="10"
                   BorderBrush="Transparent"
                   Background="#4A4E69">
             <ContentPresenter HorizontalAlignment="Center"
                               VerticalAlignment="Center" />
           </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+              <Setter TargetName="border"
+                      Property="Background"
+                      Value="#36394F" />
+              <Setter Property="Cursor"
+                      Value="Hand" />
+            </Trigger>
+          </ControlTemplate.Triggers>
         </ControlTemplate>
       </Setter.Value>
     </Setter>
   </Style>
 
+  <!--back ward button-->
+  <Style x:Key="BackwardButton"
+         TargetType="Button">
+    <Setter Property="Template">
+      <Setter.Value>
+        <ControlTemplate TargetType="Button">
+          <Border Name="border"
+                  CornerRadius="25"
+                  Background="#E5E5E5">
+            <Image Source="pack://application:,,,/Assets/PNG/Backward.png"
+                   Width="25"
+                   Height="25"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center" />
+          </Border>
+          <ControlTemplate.Triggers>
+            <Trigger Property="IsMouseOver"
+                     Value="True">
+              <Setter TargetName="border"
+                      Property="Background"
+                      Value="#BBBBBB" />
+              <Setter Property="Cursor"
+                      Value="Hand" />
+            </Trigger>
+          </ControlTemplate.Triggers>
+        </ControlTemplate>
+      </Setter.Value>
+    </Setter>
+  </Style>
+
+  <!--Forward Button-->
+  <Style x:Key="ForwardButton" TargetType="Button">
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="Button">
+            <Border Name="border"
+                    CornerRadius="25"
+                    Background="#E5E5E5">
+              <Image Source="pack://application:,,,/Assets/PNG/Forward.png"
+                     Width="25"
+                     Height="25"
+                     VerticalAlignment="Center"
+                     HorizontalAlignment="Center" />
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver"
+                       Value="True">
+                <Setter TargetName="border"
+                        Property="Background"
+                        Value="#BBBBBB" />
+                <Setter Property="Cursor"
+                        Value="Hand" />
+              </Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+  
 </ResourceDictionary>

@@ -16,27 +16,20 @@ using System.Windows.Shapes;
 namespace _4kTiles_Frontend.MVVM.Views.UserControls
 {
     /// <summary>
-    /// Interaction logic for CustomModalDialog.xaml
+    /// Interaction logic for SearchBox.xaml
     /// </summary>
-    public partial class CustomModalDialog : UserControl
+    public partial class SearchBox : UserControl
     {
-        public CustomModalDialog()
+        public SearchBox()
         {
             InitializeComponent();
         }
 
-        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            window?.Close();
-            //this.Visibility = Visibility.Collapsed;
-        }
-
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
         {
-            if(txtTitle.Text == "Title")
+            if(searchBox.Text.Equals("Search..."))
             {
-                txtTitle.Clear();
+                searchBox.Clear();
             }
         }
     }
