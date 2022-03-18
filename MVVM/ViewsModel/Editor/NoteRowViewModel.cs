@@ -24,13 +24,17 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Editor
 
         public Row Row
         {
-            get => new()
-            {
-                Notes = new()
+            get {
+                var row = new Row();
+                if (SelectedNote.Position >= 0)
                 {
-                    SelectedNote
+                    row.Notes = new()
+                    {
+                        SelectedNote
+                    };
                 }
-            };
+                return row;
+            }
         }
 
         public string Genres { get; set; }
