@@ -107,10 +107,10 @@
                Text="{Binding SelectedNote.noteType[0].MidiKey}" />
       <Label Grid.Column="0"
              Grid.Row="1"
-             Content="Volumn" />
+             Content="Volume" />
       <TextBox Grid.Column="1"
                Grid.Row="1"
-               Text="{Binding SelectedNote.noteType[0].Volumn}" />
+               Text="{Binding SelectedNote.noteType[0].Volume}" />
       <Label Grid.Column="0"
              Grid.Row="2"
              Content="Delay" />
