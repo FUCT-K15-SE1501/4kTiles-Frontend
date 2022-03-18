@@ -61,8 +61,7 @@
             </Style.Triggers>
           </Style>
         </Grid.Resources>
-        <RadioButton IsChecked="{Binding SelectedNote.Position}"
-                     Grid.Column="0"
+        <RadioButton Grid.Column="0"
                      Content="Note 1"
                      Command="{Binding Note1Command}" />
         <RadioButton Grid.Column="1"
