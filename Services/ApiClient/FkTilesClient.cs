@@ -81,11 +81,11 @@ namespace _4kTiles_Frontend.Services.ApiClient
         // Login for token
         public async Task<bool> Login(LoginModel? dao)
         {
-            // Return if user logged in or input empty
-            if (IsUserLoggedIn() || dao == null)
-            {
-                return true;
-            }
+            // // Return if user logged in or input empty
+            // if (IsUserLoggedIn() || dao == null)
+            // {
+            //     return true;
+            // }
 
             // Try to login with provided input
             var loginResponse = await RequestAsync<string>("Account/Login", RequestMethod.POST, dao);
