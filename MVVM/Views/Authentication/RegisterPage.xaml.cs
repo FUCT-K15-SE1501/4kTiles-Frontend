@@ -39,18 +39,21 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
             if (string.IsNullOrWhiteSpace(emailBox.Text))
             {
                 MessageBox.Show("Username can't be empty");
+                spinner.Close();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(usernameBox.Text))
             {
                 MessageBox.Show("Username can't be empty");
+                spinner.Close();
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(pwdBox.Password))
             {
                 MessageBox.Show("Password cant be empty");
+                spinner.Close();
                 return;
             }
 
