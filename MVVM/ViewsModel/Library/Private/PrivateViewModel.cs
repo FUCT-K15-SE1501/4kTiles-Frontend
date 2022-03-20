@@ -5,6 +5,7 @@ using _4kTiles_Frontend.Services.ApiClient;
 
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Private
 {
@@ -13,6 +14,7 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Private
         #region fields
         private object _currentView;
         private List<SongOverviewViewModel> _songsList;
+        private int _selectedIndex;
         #endregion
 
         #region properties
@@ -39,6 +41,21 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Private
         }
         #endregion
 
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public RelayCommand NextCommand { get; set; }
+        public RelayCommand PrevCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
+
         public PrivateViewModel()
         {
             Client = FkTilesClient.Client;
@@ -46,33 +63,58 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Private
 
             Task.Run(async () =>
             {
-                await GetList();
+                SelectedIndex = 1;
+                await GetList(SelectedIndex);
             });
+
+            NextCommand = new RelayCommand(async o =>
+            {
+                if (SongsList.Count > 0)
+                {
+                    await GetList(page: SelectedIndex + 1);
+                }
+            });
+            PrevCommand = new RelayCommand(async o =>
+            {
+                if (SongsList.Count > 0)
+                {
+                    if (SelectedIndex == 1)
+                        return;
+                    await GetList(page: SelectedIndex - 1);
+                }
+            });
+
         }
 
-        public async Task<bool> GetList()
+        public async Task<bool> GetList(int page = 1)
         {
-            var songsResponse = await Client.RequestAsync<List<SongOverviewModel>>("Library/private");
+            var songsResponse = await Client.RequestAsync<List<SongOverviewModel>>($"Library/private?pageNumber={page}&pageSize={4}");
 
             if (songsResponse == null || songsResponse.IsError)
             {
                 return false;
             }
 
+
+
             var list = new List<SongOverviewViewModel>();
-            foreach (var song in songsResponse.Data)
+            if (songsResponse.Data.Count > 0)
             {
-                var newSongItem = new SongOverviewViewModel
+                foreach (var song in songsResponse.Data)
                 {
-                    SongOverview = song
-                };
+                    var newSongItem = new SongOverviewViewModel
+                    {
+                        SongOverview = song,
+                    };
 
-                list.Add(newSongItem);
+                    list.Add(newSongItem);
+                }
+                SongsList = list;
+                SelectedIndex = page;
             }
-
-            SongsList = list;
-
             return true;
         }
+
+        
     }
 }

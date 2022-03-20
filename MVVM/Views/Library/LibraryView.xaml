@@ -88,21 +88,33 @@
     </Grid.Resources>
     <RadioButton Grid.Row="0"
                  Grid.Column="0"
-                 Content="Public songs"
                  IsChecked="True"
-                 Command="{Binding PublicCommand}" />
+                 Command="{Binding PublicCommand}">
+      <Image Source="pack://application:,,,/Assets/PNG/public_song_icon.png"
+             Width="30"
+             Height="30" />
+    </RadioButton>
     <RadioButton Grid.Row="1"
                  Grid.Column="0"
-                 Content="Accounts"
-                 Command="{Binding AccountsCommand}" />
+                 Command="{Binding AccountsCommand}">
+      <Image Source="pack://application:,,,/Assets/PNG/account_icon.png"
+             Width="30"
+             Height="30" />
+    </RadioButton>
     <RadioButton Grid.Row="0"
                  Grid.Column="2"
-                 Content="Private songs"
-                 Command="{Binding PrivateCommand}" />
+                 Command="{Binding PrivateCommand}">
+      <Image Source="pack://application:,,,/Assets/PNG/ic_outline-private-connectivity.png"
+             Width="45"
+             Height="45" />
+    </RadioButton>
     <RadioButton Grid.Row="1"
                  Grid.Column="2"
-                 Content="Reports"
-                 Command="{Binding ReportsCommand}" />
+                 Command="{Binding ReportsCommand}">
+      <Image Source="pack://application:,,,/Assets/PNG/report_icon.png"
+             Width="35"
+             Height="35" />
+    </RadioButton>
     <Grid HorizontalAlignment="Stretch"
           VerticalAlignment="Stretch"
           Grid.Column="1"

@@ -1,9 +1,10 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
+using System.Windows;
 using _4kTiles_Frontend.Core.Functions;
 using _4kTiles_Frontend.MVVM.Models.Library.Items;
+using _4kTiles_Frontend.MVVM.Views.UserControls;
 using _4kTiles_Frontend.Services.ApiClient;
 
 namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Public
@@ -19,6 +20,8 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Public
 
         #region properties
         public IFkTilesClient Client { get; set; }
+
+        
 
         public object CurrentView
         {
@@ -60,6 +63,8 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Public
             }
         }
 
+
+        //pagination command
         public RelayCommand NextCommand { get; set; }
         public RelayCommand PrevCommand { get; set; }
 
@@ -70,6 +75,8 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Public
         {
             Client = FkTilesClient.Client;
             SongsList = new();
+           
+
 
             Task.Run(async () =>
             {
@@ -81,22 +88,23 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Public
             {
                 if (SongsList.Count > 0)
                 {
-                    SelectedIndex += 1;
-                    await GetList(page: SelectedIndex, searchText: SearchText);
+                    await GetList(page: SelectedIndex + 1, searchText: SearchText);
                 }
             });
             PrevCommand = new RelayCommand(async o =>
             {
                 if (SongsList.Count > 0)
                 {
-                    SelectedIndex -= 1;
-                    await GetList(page: SelectedIndex, searchText: SearchText);
+                    if (SelectedIndex == 1)
+                        return;
+                    await GetList(page: SelectedIndex - 1, searchText: SearchText);
                 }
             });
             SearchCommand = new RelayCommand(async o =>
             {
                 await GetList(page: 1, searchText: SearchText);
             });
+
         }
 
         public async Task<bool> GetList(int page = 1, string searchText = "")
@@ -109,19 +117,35 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Public
             }
 
             var list = new List<SongOverviewViewModel>();
-            foreach (var song in songsResponse.Data)
+            if (songsResponse.Data.Count > 0)
             {
-                var newSongItem = new SongOverviewViewModel
+                foreach (var song in songsResponse.Data)
                 {
-                    SongOverview = song
-                };
+                    var newSongItem = new SongOverviewViewModel
+                    {
+                        SongOverview = song
+                    };
 
-                list.Add(newSongItem);
+                    list.Add(newSongItem);
+                }
+                SongsList = list;
+                SelectedIndex = page;
             }
-
-            SongsList = list;
-
+            
             return true;
         }
+
+
+        
     }
+
+    //public class ReportDTO
+    //{
+    //    public int SongId { get; set; }
+    //    public int AccountId { get; set; }
+    //    public string ReportTitle { get; set; }
+    //    public string ReportReason { get; set; }
+    //}
 }
+
+

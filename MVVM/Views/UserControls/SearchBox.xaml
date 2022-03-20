@@ -6,7 +6,7 @@
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="40"
-             d:DesignWidth="256">
+             d:DesignWidth="220">
   <Grid HorizontalAlignment="Stretch"
         VerticalAlignment="Stretch">
     <Border Background="#EAEAEA"
@@ -15,9 +15,9 @@
         <Image Source="pack://application:,,,/Assets/PNG/search-icon.png"
                Width="30"
                Height="30"
-               Margin="10,0,0,0"
+               Margin="5,0,0,0"
                VerticalAlignment="Center"/>
-        <TextBox Text="Search..."
+        <TextBox Text="{Binding SearchText}"
                  x:Name="searchBox"
                  Background="Transparent"
                  BorderThickness="0"
@@ -26,7 +26,19 @@
                  Foreground="#4A4E69"
                  VerticalAlignment="Center"
                  Margin="3,0,0,0"
-                 Width="200" GotFocus="TextBox_GotFocus"/>
+                 Width="120" GotFocus="TextBox_GotFocus"/>
+        <Button Width="62"
+                Content="Search"
+                Command="{Binding SearchCommand}"
+                BorderThickness="0"
+                Cursor="Hand">
+          <Button.Resources>
+            <Style TargetType="{x:Type Border}">
+              <Setter Property="CornerRadius"
+                      Value="0,10,10,0" />
+            </Style>
+          </Button.Resources>
+        </Button>
       </StackPanel>
     </Border>
   </Grid>

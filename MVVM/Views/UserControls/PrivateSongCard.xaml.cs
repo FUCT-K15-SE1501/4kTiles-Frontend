@@ -1,4 +1,4 @@
-﻿using System.Windows.Controls;
+using System.Windows.Controls;
 
 namespace _4kTiles_Frontend.MVVM.Views.UserControls
 {

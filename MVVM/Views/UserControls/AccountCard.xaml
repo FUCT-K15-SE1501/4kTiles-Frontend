@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
              mc:Ignorable="d" >
-  <Grid Width="462"
+  <Grid Width="400"
         Height="70">
     <Grid.ColumnDefinitions>
       <ColumnDefinition Width="*" />
@@ -18,10 +18,10 @@
               CornerRadius="10,0,0,10">
         <StackPanel>
           <TextBlock Text="{Binding AccountIns.UserName}"
-                     FontSize="24"
-                     Width="330"
+                     FontSize="20"
+                     Width="280"
                      Height="33"
-                     Margin="0,17,0,0"
+                     Margin="10,20,0,0"
                      Foreground="White" />
         </StackPanel>
       </Border>
@@ -32,7 +32,8 @@
                   Orientation="Horizontal">
         <Button x:Name="infoBtn"
                 Style="{StaticResource AccountDeleteBtn}"
-                HorizontalAlignment="Left" />
+                HorizontalAlignment="Left"
+                Command="{Binding DeactivateCommand}"/>
       </StackPanel>
     </Grid>
   </Grid>

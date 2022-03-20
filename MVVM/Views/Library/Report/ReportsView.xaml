@@ -6,16 +6,22 @@
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.Library.Report"
              xmlns:ReportVM="clr-namespace:_4kTiles_Frontend.MVVM.ViewsModel.Library.Report"
              xmlns:uc="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
+             xmlns:SongUC="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
              mc:Ignorable="d"
-             d:DesignHeight="450"
-             d:DesignWidth="800">
+             d:DesignHeight="520"
+             d:DesignWidth="440">
   <UserControl.DataContext>
     <ReportVM:ReportsViewModel />
   </UserControl.DataContext>
   <Grid>
+    <Grid.RowDefinitions>
+      <RowDefinition Height="auto" />
+      <RowDefinition Height="*" />
+    </Grid.RowDefinitions>
     <StackPanel HorizontalAlignment="Stretch"
-                VerticalAlignment="Stretch"
+                VerticalAlignment="Top"
                 Orientation="Vertical"
+                Height="400"
                 Name="SongsContainer">
       <ItemsControl ItemsSource="{Binding ReportList}">
         <ItemsControl.ItemTemplate>
@@ -36,6 +42,12 @@
           </DataTemplate>
         </ItemsControl.ItemTemplate>
       </ItemsControl>
+    </StackPanel>
+    <StackPanel Grid.Row="1"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center">
+      <SongUC:Pagination Width="200" />
     </StackPanel>
   </Grid>
 </UserControl>

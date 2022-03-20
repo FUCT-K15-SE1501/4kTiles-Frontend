@@ -14,6 +14,6 @@ namespace _4kTiles_Frontend.MVVM.Models.Report
         public string ReportTitle { get; set; } = null!;
         public string ReportReason { get; set; } = null!;
         public DateTime ReportDate { get; set; }
-        public bool ReportStatus { get; set; }
+        public bool? ReportStatus { get; set; }
     }
 }

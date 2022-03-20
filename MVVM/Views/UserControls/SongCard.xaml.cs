@@ -1,4 +1,5 @@
 using _4kTiles_Frontend.MVVM.Views.Authentication;
+using _4kTiles_Frontend.MVVM.ViewsModel.Library.Public;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,16 +27,17 @@ namespace _4kTiles_Frontend.MVVM.Views.UserControls
             InitializeComponent();
         }
 
-        private void delBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MainWindow mainWindow = new MainWindow
-            {
-                Content = new CustomModalDialog(),
-                Owner = Application.Current.MainWindow
-            };
+        //private void delBtn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    MainWindow mainWindow = new MainWindow
+        //    {
+        //        Content = new CustomModalDialog(),
+        //        Owner = Application.Current.MainWindow,
+        //        DataContext = this.DataContext
+        //    };
 
-            mainWindow.Show();
-        }
+        //    mainWindow.Show();
+        //}
 
     }
 }

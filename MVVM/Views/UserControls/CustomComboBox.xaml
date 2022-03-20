@@ -6,21 +6,11 @@
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="30"
-             d:DesignWidth="180">
+             d:DesignWidth="460">
   <Grid>
-    <!--<ComboBox x:Name="myCombo"
-              Text="Pick row length"
-              IsEditable="True"
-              IsReadOnly="True"
-              Focusable="False"
-              FontSize="18"
-              HorizontalAlignment="Stretch"
-              VerticalAlignment="Stretch"
-              Style="{StaticResource RoundComboBox}">
-
-    </ComboBox>-->
-    <ComboBox Text="Binding"
-              ItemsSource="{Binding MyCollection}"
+    <ComboBox Text="---Selecte Genre---"
+              ItemsSource="{Binding GenreList}"
+              SelectedItem="{Binding SelectedGenre}"
               IsEditable="True"
               IsReadOnly="True"
               Focusable="False"

@@ -8,11 +8,9 @@
              mc:Ignorable="d"
              BorderThickness="0"
              HorizontalAlignment="Stretch"
-             VerticalAlignment="Stretch">
-  <UserControl.DataContext>
-    <ReportVM:ReportsViewModel />
-  </UserControl.DataContext>
-  <Grid>
+             VerticalAlignment="Stretch"
+             >
+  <!--<Grid>
     <Rectangle Fill="#151515"
                Opacity=".5"
                MouseDown="Rectangle_MouseDown" />
@@ -27,13 +25,13 @@
         </Grid.RowDefinitions>
 
         <TextBlock Grid.Row="0"
-                   Text="What problem on this song ?"
+                   Text="{Binding ReportDTO.SongId}"
                    Foreground="#4A4E69"
                    FontSize="24"
                    HorizontalAlignment="Center"
                    FontWeight="Medium" />
         <TextBox Grid.Row="0"
-                 Text="Title"
+                 Text="{Binding ReportDTO.ReportTitle}"
                  Height="30"
                  Width="340"
                  x:Name="txtTitle"
@@ -55,7 +53,8 @@
                    VerticalAlignment="Top"
                    FontSize="13" />
         <TextBox Grid.Row="1"
-                 Name="txtArea"
+                 Name="ReportReason"
+                 Text="{Binding ReportDTO.ReportReason}"
                  TextWrapping="Wrap"
                  AcceptsReturn="True"
                  Height="115"
@@ -76,8 +75,8 @@
                 Content="Submit"
                 FontSize="16"
                 FontWeight="Medium"
-                Command="{Binding UploadReportRequest}" />
+                Command="{Binding ReportCommand}" />
       </Grid>
     </Border>
-  </Grid>
+  </Grid>-->
 </UserControl>
