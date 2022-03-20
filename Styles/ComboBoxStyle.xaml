@@ -98,7 +98,7 @@
                    PopupAnimation="Slide">
               <Grid Name="DropDown"
                     SnapsToDevicePixels="True"
-                    Width="175">
+                    Width="435">
                 <Border CornerRadius="5"
                         x:Name="DropDownBorder"
                         Background="#22223B"

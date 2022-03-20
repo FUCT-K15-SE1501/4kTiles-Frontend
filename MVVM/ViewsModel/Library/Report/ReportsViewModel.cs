@@ -9,9 +9,11 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Report
 {
     internal class ReportsViewModel : ObservableObject
     {
-        private ReportBody _reportBody;
         private object _currentView;
         private List<ReportmodelViewModel> _reportList;
+        private string _searchText;
+        private int _selectedIndex;
+
 
         #region properties
         public IFkTilesClient Client { get; set; }
@@ -26,15 +28,6 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Report
             }
         }
 
-        public ReportBody ReportBody
-        {
-            get => _reportBody;
-            set
-            {
-                _reportBody = value;
-                OnPropertyChanged();
-            }
-        }
 
         public List<ReportmodelViewModel> ReportList
         {
@@ -45,33 +38,70 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Report
                 OnPropertyChanged();
             }
         }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
+
         #endregion
 
-        public RelayCommand UploadReportRequest { get; set; }
+
+        //command for pagination and search
+        public RelayCommand NextCommand { get; set; }
+        public RelayCommand PrevCommand { get; set; }
+
+        public RelayCommand SearchCommand { get; set; }
 
         public ReportsViewModel()
         {
             Client = FkTilesClient.Client;
             ReportList = new();
 
-            UploadReportRequest = new(o =>
-            {
-                _ = Task.Run(async () =>
-                {
-                    await CreateReport();
-                });
-            });
-
-
             Task.Run(async () =>
             {
-                await GetList();
+                SelectedIndex = 1;
+                await GetList(SelectedIndex);
             });
+
+            NextCommand = new RelayCommand(async o =>
+            {
+                if (ReportList.Count > 0)
+                {
+                    
+                    await GetList(page: SelectedIndex + 1);
+                }
+            });
+            PrevCommand = new RelayCommand(async o =>
+            {
+                if (ReportList.Count > 0)
+                {
+                    if (SelectedIndex == 1)
+                        return;
+                    await GetList(page: SelectedIndex - 1);
+                }
+            });
+
         }
 
-        public async Task<bool> GetList()
+        public async Task<bool> GetList(int page = 1)
         {
-            var reportResponse = await Client.RequestAsync<List<ReportModel>>("SongReports");
+            var reportResponse = await Client.RequestAsync<List<ReportModel>>($"SongReports?pageNumber={page}&pageSize={4}");
 
             if (reportResponse == null || reportResponse.IsError)
             {
@@ -79,38 +109,28 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Report
             }
 
             var list = new List<ReportmodelViewModel>();
-            foreach (var report in reportResponse.Data)
+            if(reportResponse.Data.Count > 0)
             {
-                var newReportItem = new ReportmodelViewModel
+
+            
+                foreach (var report in reportResponse.Data)
                 {
-                    ReportIns = report
-                };
+                    var newReportItem = new ReportmodelViewModel
+                    {
+                        ReportIns = report
+                    };
 
-                list.Add(newReportItem);
+                    list.Add(newReportItem);
+                }
+
+                ReportList = list;
+                SelectedIndex = page;
             }
 
-            ReportList = list;
 
             return true;
         }
 
-        public async Task<bool> CreateReport()
-        {
-            var response = await Client.RequestAsync<ReportModel>("SongReports/Create", RequestMethod.POST, ReportBody);
-            if (response == null || response.IsError)
-            {
-                _ = MessageBox.Show(response?.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            MessageBox.Show("Report sent!");
-            return true;
-        }
     }
 }
 
-public class ReportBody
-{
-    public int SongId { get; set; }
-    public int AccountId { get; set; }
-    public string? ReportTitle { get; set; }
-    public string? ReportReason { get; set; }
-}

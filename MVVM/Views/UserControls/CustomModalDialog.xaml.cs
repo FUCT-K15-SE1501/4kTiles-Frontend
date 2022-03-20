@@ -1,3 +1,4 @@
+using _4kTiles_Frontend.MVVM.ViewsModel.Library.Report;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,19 +26,15 @@ namespace _4kTiles_Frontend.MVVM.Views.UserControls
             InitializeComponent();
         }
 
-        private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
-            window?.Close();
-            //this.Visibility = Visibility.Collapsed;
-        }
+        
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            if(txtTitle.Text == "Title")
-            {
-                txtTitle.Clear();
-            }
-        }
+        //private void Rectangle_MouseDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    var window = Application.Current.Windows.OfType<Window>().SingleOrDefault(x => x.IsActive);
+        //    window?.Close();
+        //    //this.Visibility = Visibility.Collapsed;
+        //}
+
+        
     }
 }

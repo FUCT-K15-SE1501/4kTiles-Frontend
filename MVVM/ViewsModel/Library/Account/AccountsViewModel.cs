@@ -3,14 +3,17 @@ using _4kTiles_Frontend.MVVM.Models.Account;
 using _4kTiles_Frontend.Services.ApiClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Account
 {
     internal class AccountsViewModel : ObservableObject
     {
         private object _currentView;
+        private AccountModel _accountModel;
         private List<AccountmodelViewModel> _accountList;
-
+        private string _searchText;
+        private int _selectedIndex;
 
         #region properties
         public IFkTilesClient Client { get; set; }
@@ -25,6 +28,16 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Account
             }
         }
 
+        public AccountModel AccountModel
+        {
+            get => _accountModel;
+            set
+            {
+                _accountModel = value;
+                OnPropertyChanged();
+            }
+        }
+
         public List<AccountmodelViewModel> AccountList
         {
             get => _accountList;
@@ -34,7 +47,34 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Account
                 OnPropertyChanged();
             }
         }
+
+        public string SearchText
+        {
+            get => _searchText;
+            set
+            {
+                _searchText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public int SelectedIndex
+        {
+            get => _selectedIndex;
+            set
+            {
+                _selectedIndex = value;
+                OnPropertyChanged();
+            }
+        }
         #endregion
+
+        public RelayCommand DeactivateCommand { get; set; }
+
+        public RelayCommand NextCommand { get; set; }
+        public RelayCommand PrevCommand { get; set; }
+
+        public RelayCommand SearchCommand { get; set; }
 
         public AccountsViewModel()
         {
@@ -43,13 +83,38 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Account
 
             Task.Run(async () =>
             {
-                await GetList();
+                SelectedIndex = 1;
+                await GetList(SelectedIndex);
             });
+
+            NextCommand = new RelayCommand(async o =>
+            {
+                if (AccountList.Count > 0)
+                {
+                    
+                    await GetList(page: SelectedIndex + 1, searchText: SearchText);
+                }
+            });
+            PrevCommand = new RelayCommand(async o =>
+            {
+                if (AccountList.Count > 0)
+                {
+                    if (SelectedIndex == 1)
+                        return;
+                    await GetList(page: SelectedIndex - 1, searchText: SearchText);
+                }
+            });
+            SearchCommand = new RelayCommand(async o =>
+            {
+                await GetList(page: 1, searchText: SearchText);
+            });
+
+            
         }
 
-        public async Task<bool> GetList()
+        public async Task<bool> GetList(int page = 1, string searchText = "")
         {
-            var accountResponse = await Client.RequestAsync<List<AccountModel>>("Account/All");
+            var accountResponse = await Client.RequestAsync<List<AccountModel>>($"Account/All?pageNumber={page}&pageSize={4}&searchString={searchText}");
 
             if (accountResponse == null || accountResponse.IsError)
             {
@@ -57,19 +122,25 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Account
             }
 
             var list = new List<AccountmodelViewModel>();
-            foreach (var account in accountResponse.Data)
+            if (accountResponse.Data.Count > 0)
             {
-                var newAccountItem = new AccountmodelViewModel
+
+                foreach (var account in accountResponse.Data)
                 {
-                    AccountIns = account
-                };
+                    var newAccountItem = new AccountmodelViewModel
+                    {
+                        AccountIns = account
+                    };
 
-                list.Add(newAccountItem);
+                    list.Add(newAccountItem);
+                }
+                AccountList = list;
+                SelectedIndex = page;
             }
-
-            AccountList = list;
-
             return true;
         }
+
+        
     }
+
 }

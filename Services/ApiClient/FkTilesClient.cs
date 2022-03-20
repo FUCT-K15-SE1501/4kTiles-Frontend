@@ -27,7 +27,7 @@ namespace _4kTiles_Frontend.Services.ApiClient
 
         Task<bool> Login(LoginModel dao);
 
-        Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object body = null);
+        Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod method = RequestMethod.GET, object body = null);
 
         string GetJsonString<T>(T obj);
         T GetJsonObject<T>(string jsonString);
@@ -111,8 +111,9 @@ namespace _4kTiles_Frontend.Services.ApiClient
         }
 
         // Request method
-        public async Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod? method = RequestMethod.GET, object? body = null)
+        public async Task<Response<T?>> RequestAsync<T>(string endpoint, RequestMethod method = RequestMethod.GET, object? body = null)
         {
+
             if (!string.IsNullOrWhiteSpace(_jwtToken))
                 _client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", _jwtToken);
 

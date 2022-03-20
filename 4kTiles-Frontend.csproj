@@ -10,13 +10,18 @@
 
   <ItemGroup>
     <None Remove="Assets\Fonts\vffree04.ttf" />
+    <None Remove="Assets\PNG\account_icon.png" />
     <None Remove="Assets\PNG\akar-icons_info.png" />
     <None Remove="Assets\PNG\Backward.png" />
     <None Remove="Assets\PNG\Flag.png" />
     <None Remove="Assets\PNG\Forward.png" />
+    <None Remove="Assets\PNG\ic_outline-private-connectivity.png" />
     <None Remove="Assets\PNG\Note.png" />
     <None Remove="Assets\PNG\Pen.png" />
     <None Remove="Assets\PNG\Play.png" />
+    <None Remove="Assets\PNG\public_song_icon.png" />
+    <None Remove="Assets\PNG\report_icon.png" />
+    <None Remove="Assets\PNG\search-icon.png" />
     <None Remove="Assets\PNG\Triangle.png" />
     <None Remove="Assets\PNG\Xicon.png" />
   </ItemGroup>
@@ -25,6 +30,7 @@
     <Folder Include="Assets\SVG\" />
     <Folder Include="MVVM\Base\" />
     <Folder Include="MVVM\Models\Library\List\" />
+    <Folder Include="MVVM\Models\Setting\" />
     <Folder Include="Services\Editor\" />
     <Folder Include="Utils\" />
   </ItemGroup>
@@ -36,6 +42,9 @@
 
   <ItemGroup>
     <Resource Include="Assets\Fonts\vffree04.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\account_icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\PNG\akar-icons_info.png">
@@ -50,6 +59,9 @@
     <Resource Include="Assets\PNG\Forward.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Assets\PNG\ic_outline-private-connectivity.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Assets\PNG\Note.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
@@ -57,6 +69,15 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\PNG\Play.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\public_song_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\report_icon.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Assets\PNG\search-icon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Assets\PNG\Triangle.png">

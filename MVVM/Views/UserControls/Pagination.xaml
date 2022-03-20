@@ -6,20 +6,24 @@
              xmlns:local="clr-namespace:_4kTiles_Frontend.MVVM.Views.UserControls"
              mc:Ignorable="d"
              d:DesignHeight="35"
-             d:DesignWidth="280">
+             d:DesignWidth="200">
   <Grid>
     <Grid.ColumnDefinitions>
       <ColumnDefinition />
-      <ColumnDefinition Width="60" />
+      <ColumnDefinition Width="40" />
       <ColumnDefinition />
     </Grid.ColumnDefinitions>
-    <Button Grid.Column="0" Style="{StaticResource BackwardButton}"/>
+    <Button Grid.Column="0"
+            Style="{StaticResource BackwardButton}"
+            Command="{Binding PrevCommand}"/>
     <TextBlock Grid.Column="1"
-               Text="1"
+               Text="{Binding SelectedIndex}"
                Foreground="White"
                FontSize="18"
                HorizontalAlignment="Center"
                VerticalAlignment="Center" />
-    <Button Grid.Column="2" Style="{StaticResource ForwardButton}"/>
+    <Button Grid.Column="2"
+            Style="{StaticResource ForwardButton}"
+            Command="{Binding NextCommand}"/>
   </Grid>
 </UserControl>
