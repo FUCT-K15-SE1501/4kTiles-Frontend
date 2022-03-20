@@ -96,8 +96,8 @@
     </RadioButton>
     <RadioButton Grid.Row="1"
                  Grid.Column="0"
-                 Command="{Binding AccountsCommand}">
-      <Image Source="pack://application:,,,/Assets/PNG/account_icon.png"
+                 Command="{Binding AccountsCommand}" IsEnabled="{Binding IsEnabled}">
+      <Image Source="{Binding iconImg}"
              Width="30"
              Height="30" />
     </RadioButton>

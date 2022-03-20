@@ -11,6 +11,8 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library
     {
         #region fields
         private object _currentView;
+        public bool IsEnabled { get; set; }
+        public string iconImg { get; set; }
         #endregion
 
         #region properties
@@ -39,7 +41,19 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library
         #endregion
         public LibraryViewModel()
         {
+            
             Client = FkTilesClient.Client;
+
+            if (Client.GetAccount().Roles.Contains("Admin"))
+            {
+                IsEnabled = true;
+                iconImg = "pack://application:,,,/Assets/PNG/account_icon.png";
+            }
+            else if (!Client.GetAccount().Roles.Contains("Admin"))
+            {
+                IsEnabled = false;
+                iconImg = "pack://application:,,,/Assets/PNG/ban_icon.png";
+            }
 
             PublicViewModel = new();
             PrivateViewModel = new();
@@ -60,7 +74,9 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library
 
             AccountsCommand = new RelayCommand(o =>
             {
+                
                 CurrentView = AccountsViewModel;
+                
             });
 
             ReportsCommand = new RelayCommand(o =>
@@ -68,5 +84,6 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library
                 CurrentView = ReportsViewModel;
             });
         }
+
     }
 }
