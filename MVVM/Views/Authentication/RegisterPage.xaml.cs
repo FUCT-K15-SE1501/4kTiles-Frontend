@@ -38,7 +38,7 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
             if (string.IsNullOrWhiteSpace(emailBox.Text))
             {
-                MessageBox.Show("Username can't be empty");
+                MessageBox.Show("Email can't be empty");
                 spinner.Close();
                 return;
             }

@@ -13,6 +13,7 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library
         private object _currentView;
         public bool IsEnabled { get; set; }
         public string iconImg { get; set; }
+        public string iconImg2 { get; set; }
         #endregion
 
         #region properties
@@ -48,11 +49,13 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library
             {
                 IsEnabled = true;
                 iconImg = "pack://application:,,,/Assets/PNG/account_icon.png";
+                iconImg2 = "pack://application:,,,/Assets/PNG/report_icon.png";
             }
             else if (!Client.GetAccount().Roles.Contains("Admin"))
             {
                 IsEnabled = false;
                 iconImg = "pack://application:,,,/Assets/PNG/ban_icon.png";
+                iconImg2 = "pack://application:,,,/Assets/PNG/ban_icon.png";
             }
 
             PublicViewModel = new();
