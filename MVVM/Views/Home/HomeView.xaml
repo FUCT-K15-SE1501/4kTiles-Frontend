@@ -17,11 +17,12 @@
                VerticalAlignment="Center">
       <Label Content="Welcome"
              FontSize="64"
-             Foreground="White"
+             Foreground="#d5d5d5"
              Width="640"
              HorizontalContentAlignment="Center"/>
       <Label Content="{Binding UserName}"
              FontSize="64"
+             FontWeight="Medium"
              Foreground="White"
              Width="640"
              HorizontalContentAlignment="Center"/>

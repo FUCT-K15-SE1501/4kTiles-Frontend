@@ -110,8 +110,9 @@
     </RadioButton>
     <RadioButton Grid.Row="1"
                  Grid.Column="2"
-                 Command="{Binding ReportsCommand}">
-      <Image Source="pack://application:,,,/Assets/PNG/report_icon.png"
+                 Command="{Binding ReportsCommand}"
+                 IsEnabled="{Binding IsEnabled}">
+      <Image Source="{Binding iconImg2}"
              Width="35"
              Height="35" />
     </RadioButton>
