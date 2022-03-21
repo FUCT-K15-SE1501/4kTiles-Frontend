@@ -70,7 +70,7 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel
             SettingsViewCommand = new RelayCommand(o =>
             {
                 CurrentView = SettingsViewModel;
-                CurrentTitle = "Settings";
+                CurrentTitle = "Profile";
             });
         }
 
