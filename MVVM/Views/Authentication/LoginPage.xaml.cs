@@ -1,3 +1,4 @@
+using System.Text.Json;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -35,7 +36,9 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
 
         private void ForgotPasswordBtn(object sender, RoutedEventArgs e)
         {
-
+            ForgotPassword forgotPassword = new ForgotPassword();
+            forgotPassword.Show();
+            this.Close();
         }
 
         private async void LoginBtn_Click(object sender, RoutedEventArgs e)
@@ -62,21 +65,23 @@ namespace _4kTiles_Frontend.MVVM.Views.Authentication
                 Email = usernameBox.Text,
                 Password = pwdBox.Password
             };
-
-            bool loginTask = await Client.Login(dao);
-
-            if (loginTask && Client.IsUserLoggedIn())
+            try
             {
-                MainWindow mainWindow = new MainWindow();
-                mainWindow.Show();
-                Close();
+                bool loginTask = await Client.Login(dao);
+
+                if (loginTask && Client.IsUserLoggedIn())
+                {
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.Show();
+                    Close();
+                }
+                else
+                {
+                    MessageBox.Show("Failed to login", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            else
-            {
-                MessageBox.Show("Failed to login", "Failed", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            catch (JsonException ex) { MessageBox.Show("Account not exist or disabled", "Failed", MessageBoxButton.OK, MessageBoxImage.Error); }
             spinner.Close();
-            Close();
         }
 
         private void Close_Window(object sender, MouseButtonEventArgs e)

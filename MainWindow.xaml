@@ -62,8 +62,9 @@
         <Border Style="{StaticResource leftCardHeader}">
           <Border Margin="10"
                   Background="#4A4E69"
-                  CornerRadius="20,5,5,5">
-            <Image Stretch="Fill" />
+                  CornerRadius="20">
+            <Image Stretch="Fill"
+                   Source="{Binding AvatarImg}" />
           </Border>
         </Border>
         <Border Style="{StaticResource topLongRect}">

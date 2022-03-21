@@ -1,3 +1,4 @@
+using System;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -33,6 +34,8 @@ namespace _4kTiles_Frontend.Services.ApiClient
         T GetJsonObject<T>(string jsonString);
 
         AccountModel GetAccount();
+
+        Uri GetAvatar();
     }
 
     public class FkTilesClient : IFkTilesClient
@@ -108,6 +111,13 @@ namespace _4kTiles_Frontend.Services.ApiClient
         public AccountModel GetAccount()
         {
             return _account;
+        }
+
+        //get image accountId from dicebear api 
+        public Uri GetAvatar()
+        {
+            string avatarUri = $"{ConfigService.Configuration.GetSection("BaseUrl:DiceBear").Value}{_account?.UserName}.png?radius=20";
+            return new(avatarUri);
         }
 
         // Request method
