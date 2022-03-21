@@ -114,7 +114,7 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel.Library.Account
 
         public async Task<bool> GetList(int page = 1, string searchText = "")
         {
-            var accountResponse = await Client.RequestAsync<List<AccountModel>>($"Account/All?pageNumber={page}&pageSize={4}&searchString={searchText}");
+            var accountResponse = await Client.RequestAsync<List<AccountModel>>($"Account/All?pageNumber={page}&pageSize={4}&name={searchText}");
 
             if (accountResponse == null || accountResponse.IsError)
             {

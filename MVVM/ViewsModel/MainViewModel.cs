@@ -3,6 +3,8 @@ using _4kTiles_Frontend.Core.Functions;
 using _4kTiles_Frontend.MVVM.ViewsModel.Home;
 using _4kTiles_Frontend.MVVM.ViewsModel.Library;
 using _4kTiles_Frontend.MVVM.ViewsModel.Settings;
+using _4kTiles_Frontend.Services.ApiClient;
+using System;
 
 namespace _4kTiles_Frontend.MVVM.ViewsModel
 {
@@ -12,6 +14,7 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel
         #region
         private object _currentView;
         private string _currentTitle;
+        public Uri AvatarImg { get; set; }
         #endregion
 
         #region properties
@@ -54,6 +57,8 @@ namespace _4kTiles_Frontend.MVVM.ViewsModel
 
             CurrentView = HomeViewModel;
             CurrentTitle = "Home";
+
+            AvatarImg = FkTilesClient.Client.GetAvatar();
 
             HomeViewCommand = new RelayCommand(o =>
             {
